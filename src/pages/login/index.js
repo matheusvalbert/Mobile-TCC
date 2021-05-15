@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 
 import { Container, KeyboardView, Tittle, Form, Input, Submit, SubmitText } from './styles';
 
@@ -13,7 +13,7 @@ export default function Login() {
   return (
     <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
       <Container>
-        <KeyboardView behavior="padding" enabled keyboardVerticalOffset={20}>
+        <KeyboardView behavior={Platform.OS === 'ios' ? "padding" : 'height'} keyboardVerticalOffset={0}>
           <Tittle>Sistema de controle de acesso para condomínios</Tittle>
           <Form>
             <Input placeholder="Nome de usuário" autoCapitalize='none' value={ mail } onChangeText={  setMail} />
