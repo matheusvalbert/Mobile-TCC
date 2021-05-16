@@ -15,7 +15,7 @@ const Routes = () => {
   if(loading) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#98FF98' }}>
-        <ActivityIndicator size='large' color='#000' />
+        <ActivityIndicator size='large' color='#FFF' />
       </View>
     );
   }
