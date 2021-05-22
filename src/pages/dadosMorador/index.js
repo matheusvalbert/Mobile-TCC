@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
 
 import { useStackName } from '../../hooks/stackName';
 import { useRoute } from '@react-navigation/native';
 
-// import { Container } from './styles';
+import { Container, Add } from './styles';
+
+import Plus from 'react-native-vector-icons/Octicons';
+Plus.loadFont();
+
+import { useMorador } from '../../hooks/morador';
 
 const DadosMorador = ({ navigation }) => {
 
   const route = useRoute();
   const { setName } = useStackName();
+
+  const { setMorador } = useMorador();
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -18,7 +24,20 @@ const DadosMorador = ({ navigation }) => {
     return unsubscribe;
   }, [navigation]);
 
-  return <View />;
+  function novoDado() {
+    setMorador('');
+    navigation.navigate('Cadastro Morador');
+  }
+
+  return(
+    <>
+    <Container>
+    </Container>
+    <Add onPress={ () => novoDado() } >
+      <Plus name='plus' size={ 20 } color='#FFF' />
+    </Add>
+    </>
+  );
 }
 
 export default DadosMorador;
