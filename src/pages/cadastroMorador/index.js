@@ -3,8 +3,6 @@ import { TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'rea
 
 import ImagePicker from 'react-native-image-crop-picker';
 
-import { useNavigation } from '@react-navigation/native';
-
 import {
   Container, Image, Form, FormText, Text, Input, FormButton, FormButtons,
   TextButton, Add, Delete, Modify, InvisibleForm, CameraForm, ButtonCamera
@@ -15,8 +13,6 @@ import api from '../../services/api';
 import { useMorador } from '../../hooks/morador';
 
 const CadastroMorador = ({ navigation }) => {
-
-  const navBack = useNavigation();
 
   const [ photo, setPhoto ] = useState('');
   const [ nome, setNome ] = useState('');
@@ -30,14 +26,14 @@ const CadastroMorador = ({ navigation }) => {
     if(imageChanged) {
       completeUpdate(uid, photo, nome, placa);
       setTimeout(() =>  {
-        navBack.goBack();
-      }, 200);
+        navigation.goBack();
+      }, 250);
     }
     else {
       partialUpdate(uid, nome, placa);
       setTimeout(() =>  {
-        navBack.goBack();
-      }, 200);
+        navigation.goBack();
+      }, 250);
     }
   }
 
@@ -49,7 +45,7 @@ const CadastroMorador = ({ navigation }) => {
     else {
       if(addUser(photo, nome, placa))
       setTimeout(() =>  {
-        navBack.goBack()
+        navigation.goBack()
       }, 200);
       else
         alert('Erro ao inserir dados');
@@ -150,7 +146,7 @@ const CadastroMorador = ({ navigation }) => {
             </FormButton>
               :
             <FormButtons>
-              <Delete onPress={ () => { deleteUser(moradores.uid) ? navBack.goBack() : null }} ><TextButton>Apagar</TextButton></Delete>
+              <Delete onPress={ () => { deleteUser(moradores.uid) ? navigation.goBack() : null }} ><TextButton>Apagar</TextButton></Delete>
               <Modify onPress={ () => { update(moradores.uid) }} ><TextButton>Modificar</TextButton></Modify>
             </FormButtons>
           }
