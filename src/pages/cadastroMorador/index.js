@@ -10,6 +10,8 @@ import {
   TextButton, Add, Delete, Modify, InvisibleForm, CameraForm, ButtonCamera
 } from './styles';
 
+import api from '../../services/api';
+
 import { useMorador } from '../../hooks/morador';
 
 const CadastroMorador = ({ navigation }) => {
@@ -126,8 +128,12 @@ const CadastroMorador = ({ navigation }) => {
             !moradores ?
               !imageChanged ? require('../../img/profile.png') : { uri: photo.path }
                 :
-              { uri: !imageChanged ? `http://localhost:3333/morador/profileImage/${moradores.img_name}` : photo.path } }
-          />
+              { uri: !imageChanged ? `http://localhost:3333/morador/profileImage/${moradores.img_name}` : photo.path,
+                headers: {
+                  Authorization: api.defaults.headers.Authorization
+                }
+              }
+          }/>
         </TouchableOpacity>
         <Form>
           <FormText>

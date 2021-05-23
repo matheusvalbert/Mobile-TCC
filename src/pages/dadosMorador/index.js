@@ -10,6 +10,8 @@ Icon.loadFont();
 import Plus from 'react-native-vector-icons/Octicons';
 Plus.loadFont();
 
+import api from '../../services/api';
+
 import { useMorador } from '../../hooks/morador';
 
 const DadosMorador = ({ navigation }) => {
@@ -54,7 +56,11 @@ const DadosMorador = ({ navigation }) => {
         <LineForm>
           <Button onPress={ () => alterarDados(item) } >
             <Form>
-              <Image source={{ uri: `http://localhost:3333/morador/profileImage/${item.img_name}` }}/>
+              <Image source={{ uri: `http://localhost:3333/morador/profileImage/${item.img_name}`,
+                headers: {
+                  Authorization: api.defaults.headers.Authorization
+                }
+              }}/>
               <Text> { item.name } </Text>
               <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
             </Form>
