@@ -3,6 +3,8 @@ import { TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'rea
 
 import ImagePicker from 'react-native-image-crop-picker';
 
+import { useNavigation } from '@react-navigation/native';
+
 import {
   Container, Image, Form, FormText, Text, Input, FormButton, FormButtons,
   TextButton, Add, Delete, Modify, InvisibleForm, CameraForm, ButtonCamera
@@ -12,13 +14,30 @@ import { useMorador } from '../../hooks/morador';
 
 const CadastroMorador = ({ navigation }) => {
 
+  const navBack = useNavigation();
+
   const [ photo, setPhoto ] = useState('');
   const [ nome, setNome ] = useState('');
   const [ placa, setPlaca ] = useState('');
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ imageChanged, setImageChanged ] = useState(false);
 
-  const { morador, addUser } = useMorador();
+  const { moradores, addUser, deleteUser, completeUpdate, partialUpdate } = useMorador();
+
+  function update(uid) {
+    if(imageChanged) {
+      completeUpdate(uid, photo, nome, placa);
+      setTimeout(() =>  {
+        navBack.goBack();
+      }, 200);
+    }
+    else {
+      partialUpdate(uid, nome, placa);
+      setTimeout(() =>  {
+        navBack.goBack();
+      }, 200);
+    }
+  }
 
   function adicionarUsuario() {
 
@@ -27,7 +46,9 @@ const CadastroMorador = ({ navigation }) => {
 
     else {
       if(addUser(photo, nome, placa))
-        navigation.goBack();
+      setTimeout(() =>  {
+        navBack.goBack()
+      }, 200);
       else
         alert('Erro ao inserir dados');
     }
@@ -35,8 +56,8 @@ const CadastroMorador = ({ navigation }) => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      setNome('');
-      setPlaca('');
+      setNome(moradores.name);
+      setPlaca(moradores.plate);
       setPhoto('');
       setImageChanged(false);
     });
@@ -102,10 +123,10 @@ const CadastroMorador = ({ navigation }) => {
       <Container behavior={Platform.OS === 'ios' ? "padding" : 'height'} keyboardVerticalOffset={220}>
         <TouchableOpacity onPress={ () => setModalVisible(true) }>
           <Image source={
-            !morador ?
-              photo === '' ? require('../../img/profile.png') : { uri: photo.path }
+            !moradores ?
+              !imageChanged ? require('../../img/profile.png') : { uri: photo.path }
                 :
-              { uri: photo.path === '' ? morador.foto : photo.path } }
+              { uri: !imageChanged ? `http://localhost:3333/morador/profileImage/${moradores.img_name}` : photo.path } }
           />
         </TouchableOpacity>
         <Form>
@@ -117,14 +138,14 @@ const CadastroMorador = ({ navigation }) => {
             <Text>Placa:</Text>
             <Input value={ placa } onChangeText={ setPlaca } />
           </FormText>
-          { !morador ?
+          { !moradores ?
             <FormButton>
               <Add onPress={ () => { adicionarUsuario() } } ><TextButton>Adicionar</TextButton></Add>
             </FormButton>
               :
             <FormButtons>
-              <Delete onPress={ () => { deleteUser(); navigation.goBack() }} ><TextButton>Apagar</TextButton></Delete>
-              <Modify onPress={ () => { updateProfile(); navigation.goBack() }} ><TextButton>Modificar</TextButton></Modify>
+              <Delete onPress={ () => { deleteUser(moradores.uid) ? navBack.goBack() : null }} ><TextButton>Apagar</TextButton></Delete>
+              <Modify onPress={ () => { update(moradores.uid) }} ><TextButton>Modificar</TextButton></Modify>
             </FormButtons>
           }
         </Form>

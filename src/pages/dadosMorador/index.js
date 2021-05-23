@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useStackName } from '../../hooks/stackName';
 import { useRoute } from '@react-navigation/native';
 
-import { Container, Add } from './styles';
+import { Container, List, Button, LineForm, Form, Text, Image, Add } from './styles';
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+Icon.loadFont();
 import Plus from 'react-native-vector-icons/Octicons';
 Plus.loadFont();
 
@@ -15,23 +17,52 @@ const DadosMorador = ({ navigation }) => {
   const route = useRoute();
   const { setName } = useStackName();
 
-  const { setMorador } = useMorador();
+  const [ isFetching, setIsFetching ] = useState(false);
+  const { moradores, setMoradores, getUsers } = useMorador();
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setName(route.name);
+      getUsers();
     });
     return unsubscribe;
   }, [navigation]);
 
+  function update() {
+    getUsers();
+    setIsFetching(false);
+  }
+
+  function alterarDados(item) {
+    setMoradores(item);
+    navigation.navigate('Cadastro Morador');
+  }
+
   function novoDado() {
-    setMorador('');
+    setMoradores('');
     navigation.navigate('Cadastro Morador');
   }
 
   return(
     <>
     <Container>
+    <List
+      data={moradores}
+      refreshing={isFetching}
+      onRefresh={ () => update() }
+      renderItem={({ item }) => (
+        <LineForm>
+          <Button onPress={ () => alterarDados(item) } >
+            <Form>
+              <Image source={{ uri: `http://localhost:3333/morador/profileImage/${item.img_name}` }}/>
+              <Text> { item.name } </Text>
+              <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
+            </Form>
+          </Button>
+        </LineForm>
+      )}
+      keyExtractor={item => item.uid}
+    />
     </Container>
     <Add onPress={ () => novoDado() } >
       <Plus name='plus' size={ 20 } color='#FFF' />

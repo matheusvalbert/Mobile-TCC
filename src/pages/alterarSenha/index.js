@@ -42,7 +42,7 @@ const AlterarSenha = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
       <KeyboardView behavior={Platform.OS === 'ios' ? "padding" : 'height'} >
         <Form>
-          <Input placeholder="Senha antiga" autoCapitalize='none' value={ oldPassword } onChangeText={ setOldPassword } />
+          <Input secureTextEntry={true} autoCapitalize='none' placeholder="Senha antiga" value={ oldPassword } onChangeText={ setOldPassword } />
           <Input secureTextEntry={true} autoCapitalize='none' placeholder="Nova senha" value={ newPassword } onChangeText={ setNewPassword } />
           <Input secureTextEntry={true} autoCapitalize='none' placeholder="Repita a nova senha" value={ repeat } onChangeText={ setRepeat } />
           <Submit onPress={ alterarSenha }>
