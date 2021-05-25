@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableWithoutFeedback, Modal } from 'react-native';
+import { TouchableWithoutFeedback, Modal, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-community/picker';
 
 import { useStackName } from '../../hooks/stackName';
 import { useRoute } from '@react-navigation/native';
 
-import { Container, Text, Title, SelectionText, LineForm, Select, Form, Image, FormSelect, InvisibleForm, SelectTypeForm } from './styles';
+import { Container, Text, Title, SelectionText, LineForm, Select, Form, Image, FormSelect, InvisibleForm, SelectTypeForm, HeaderButtons, Button, PickerForm } from './styles';
 
 import api from '../../services/api';
 
@@ -13,8 +14,9 @@ Icon.loadFont();
 
 const AgendarVisitante = ({ navigation }) => {
 
-  const [ selectedType, setSelectedType ] = useState('Selecione o tipo...');
   const [ modalVisible, setModalVisible ] = useState(false);
+  const [ selectedType, setSelectedType ] = useState('Visita recorrente');
+  const [ type, setType ] = useState('Selecione o tipo...');
 
   const route = useRoute();
   const { setName } = useStackName();
@@ -26,8 +28,25 @@ const AgendarVisitante = ({ navigation }) => {
     return unsubscribe;
   }, [navigation]);
 
-  function SelectType() {
-    return(
+  return(
+    <Container>
+      <Title>Selecione o visitante:</Title>
+      <LineForm>
+        <Select>
+          <Form>
+            <Image source={ require('../../img/profile.png') }/>
+            <Text>Selecione...</Text>
+            <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
+          </Form>
+        </Select>
+      </LineForm>
+      <Title>Selecione o tipo de visita:</Title>
+      <FormSelect>
+        <Select onPress={ () => setModalVisible(true) }>
+          <SelectionText> { type } </SelectionText>
+          <Icon name='arrow-drop-down' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
+        </Select>
+      </FormSelect>
       <Modal
         animationType="slide"
         transparent={true}
@@ -40,38 +59,39 @@ const AgendarVisitante = ({ navigation }) => {
           <InvisibleForm>
             <TouchableWithoutFeedback>
               <SelectTypeForm>
+                <HeaderButtons>
+                  <Button onPress={ () => setModalVisible(false) }>
+                      <SelectionText>Calcelar</SelectionText>
+                  </Button>
+                  <Button onPress={ () => { setType(selectedType); setModalVisible(false) }}>
+                    <SelectionText>Ok</SelectionText>
+                  </Button>
+                </HeaderButtons>
+                <PickerForm>
+                <Picker
+                  selectedValue={selectedType}
+                  onValueChange={(itemValue, itemIndex) => setSelectedType(itemValue)}
+                >
+                  <Picker.Item label="Visita recorrente" value="Visita recorrente" />
+                  <Picker.Item label="Visita única" value="Visita única" />
+                </Picker>
+                </PickerForm>
               </SelectTypeForm>
             </TouchableWithoutFeedback>
           </InvisibleForm>
         </TouchableWithoutFeedback>
       </Modal>
-    );
-  }
-
-  return(
-    <Container>
-      <Title>Selecione o visitante:</Title>
-      <LineForm>
-        <Select>
-          <Form>
-            <Image source={{ uri: `http://localhost:3333/morador/profileImage/${'0df86900b8e12000b3ab9b9b70ddeb7c-IMG_0001.JPG'}`,
-              headers: {
-                Authorization: api.defaults.headers.Authorization
-              }
-            }}/>
-            <Text> { 'Matheus' } </Text>
-            <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
-          </Form>
-        </Select>
-      </LineForm>
-      <Title>Selecione o tipo de visita:</Title>
-      <FormSelect>
-        <Select onPress={ () => setModalVisible(true) }>
-          <SelectionText> { selectedType } </SelectionText>
-          <Icon name='arrow-drop-down' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
-        </Select>
-      </FormSelect>
-      <SelectType />
+      {
+        type === 'Visita recorrente'
+          ?
+        <Title>Visita recorrente</Title>
+          :
+        type === 'Visita única'
+          ?
+        <Title>Visita única</Title>
+          :
+        null
+      }
     </Container>
   );
 }

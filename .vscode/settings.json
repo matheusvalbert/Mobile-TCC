@@ -9,6 +9,7 @@
         "Biblioteca",
         "Cadastrar",
         "Cadastro",
+        "Calcelar",
         "Entrada",
         "Fechar",
         "Inv",
@@ -42,17 +43,20 @@
         "inserir",
         "lida",
         "menos",
+        "nica",
         "nios",
         "onepassword",
         "pelo",
         "placa",
+        "recorrente",
         "rio",
         "senhas",
         "tipo",
         "todos",
         "usu",
         "usuário",
-        "visita"
+        "visita",
+        "única"
     ],
     "python.pythonPath": "/usr/local/bin/python3"
 }

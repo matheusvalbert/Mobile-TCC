@@ -67,6 +67,25 @@ export const SelectTypeForm = styled.View`
   background-color: #FFF;
   width: 100%;
   height: 30%;
-  padding-top: 20px;
   border-radius: 30px;
+`;
+
+export const HeaderButtons = styled.View`
+  position: absolute;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1;
+  left: 0;
+  right: 0;
+`;
+
+export const Button = styled.TouchableOpacity`
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+`;
+
+export const PickerForm = styled.View`
+  height: 100%;
+  width: 100%;
 `;
