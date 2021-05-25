@@ -28,7 +28,7 @@ const ControleDeAcesso = ({ navigation }) => {
         <Button onPress={ () => navigation.navigate('Dados Moradores') }>
           <FormButton>
             <Icon name='person' size={ 80 } color='#03BB85' />
-            <ButtonTittle>Adicionar/Alterar { '\n' } dados morador</ButtonTittle>
+            <ButtonTittle>Cadastrar/Alterar { '\n' } dados morador</ButtonTittle>
           </FormButton>
         </Button>
         <Button onPress={ () => navigation.navigate('Dados Visitante') }>
