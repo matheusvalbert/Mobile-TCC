@@ -22,6 +22,7 @@
         "Repita",
         "Reservar",
         "Sair",
+        "Selecione",
         "Senha",
         "Visitante",
         "Visitantes",
@@ -47,9 +48,11 @@
         "placa",
         "rio",
         "senhas",
+        "tipo",
         "todos",
         "usu",
-        "usuário"
+        "usuário",
+        "visita"
     ],
     "python.pythonPath": "/usr/local/bin/python3"
 }
