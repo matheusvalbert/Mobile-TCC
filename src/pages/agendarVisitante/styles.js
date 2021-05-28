@@ -17,11 +17,11 @@ export const Title = styled.Text`
   font-size: 22px;
 `;
 
-export const LineForm = styled.View`
+export const BoxForm = styled.View`
   border-top-width: .2px;
   border-bottom-width: .2px;
   border-color: #03BB85;
-  margin-bottom: 15px;
+  margin-bottom: 50px;
 `;
 
 export const Select = styled.TouchableOpacity`
@@ -88,4 +88,73 @@ export const Button = styled.TouchableOpacity`
 export const PickerForm = styled.View`
   height: 100%;
   width: 100%;
+`;
+
+export const Tipo = styled.View`
+  margin-top: 50px;
+`;
+
+export const SelectDaysForm = styled.View`
+  position: absolute;
+  bottom: 0;
+  background-color: #FFF;
+  width: 100%;
+  height: 55%;
+  border-radius: 30px;
+`;
+
+export const List = styled.FlatList`
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 35px;
+  margin-top: 50px;
+`;
+
+export const Days = styled.Text`
+  font-size: 22px;
+`;
+
+export const LineForm = styled.View`
+  border-bottom-width: .2px;
+  border-color: #03BB85;
+`;
+
+export const DayButton = styled.TouchableOpacity`
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const SelectDay = styled.View`
+  position: absolute;
+  bottom: 0;
+  background-color: #FFF;
+  width: 100%;
+  height: 40%;
+  border-radius: 30px;
+`;
+
+export const DateForm = styled.View`
+  margin-top: 50px;
+`;
+
+export const Add = styled.TouchableOpacity`
+  justify-content: center;
+  align-self: center;
+  background-color: #1520AB;
+  border-radius: 30px;
+  padding: 20px 20px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 200px;
+`;
+
+export const TextButton = styled.Text`
+  color: #FFF;
+  font-weight: bold;
+  font-size: 17px;
 `;

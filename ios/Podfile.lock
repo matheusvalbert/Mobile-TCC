@@ -324,6 +324,8 @@ PODS:
     - React-Core
   - RNCPicker (1.8.1):
     - React-Core
+  - RNDateTimePicker (3.5.0):
+    - React-Core
   - RNGestureHandler (1.10.3):
     - React-Core
   - RNImageCropPicker (0.36.2):
@@ -397,6 +399,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCPicker (from `../node_modules/@react-native-community/picker`)"
+  - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -482,6 +485,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCPicker:
     :path: "../node_modules/@react-native-community/picker"
+  RNDateTimePicker:
+    :path: "../node_modules/@react-native-community/datetimepicker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNImageCropPicker:
@@ -536,6 +541,7 @@ SPEC CHECKSUMS:
   ReactCommon: bedc99ed4dae329c4fcf128d0c31b9115e5365ca
   RNCAsyncStorage: f47a7e8f927f7c9da947491fc55752eb9ce17f2d
   RNCPicker: 914b557e20b3b8317b084aca9ff4b4edb95f61e4
+  RNDateTimePicker: d4f276aabaf26386bb4dca86e8c92087e7151ba0
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNImageCropPicker: 35a3ceb837446fa11547704709bb22b5fac6d584
   RNScreens: c277bfc4b5bb7c2fe977d19635df6f974f95dfd6
