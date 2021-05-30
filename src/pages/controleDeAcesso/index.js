@@ -39,7 +39,7 @@ const ControleDeAcesso = ({ navigation }) => {
         </Button>
       </Form>
       <Form>
-        <Button onPress={ () => navigation.navigate('Agendar Visitante') }>
+        <Button onPress={ () => navigation.navigate('Agendar Visitante Dados') }>
           <FormButton>
             <Icon name='calendar-today' size={ 80 } color='#03BB85' />
             <ButtonTittle>Agendar visitante</ButtonTittle>

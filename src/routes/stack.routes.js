@@ -14,6 +14,7 @@ import DadosMorador from '../pages/dadosMorador';
 import CadastroMorador from '../pages/cadastroMorador';
 import DadosVisitante from '../pages/dadosVisitante';
 import CadastroVisitante from '../pages/cadastroVisitante';
+import AgendarVisitanteDados from '../pages/agendarVisitanteDados';
 import AgendarVisitante from '../pages/agendarVisitante';
 import AgendarVisitanteRecorrente from '../pages/agendarVisitanteRecorrente';
 import ListaDeVisitantes from '../pages/criarListaDeVisitantes';
@@ -55,6 +56,7 @@ const StackRoutes = () => {
             <Stack.Screen name='Cadastro Morador' component={ CadastroMorador } />
             <Stack.Screen name='Dados Visitante' component={ DadosVisitante } />
             <Stack.Screen name='Cadastro Visitante' component={ CadastroVisitante } />
+            <Stack.Screen name='Agendar Visitante Dados' component={ AgendarVisitanteDados } />
             <Stack.Screen name='Agendar Visitante' component={ AgendarVisitante } />
             <Stack.Screen name='Agendar Visitante Recorrente' component={ AgendarVisitanteRecorrente } />
             <Stack.Screen name='Lista de Visitantes' component={ ListaDeVisitantes } />
