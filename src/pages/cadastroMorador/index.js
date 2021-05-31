@@ -22,6 +22,13 @@ const CadastroMorador = ({ navigation }) => {
 
   const { moradores, addUser, deleteUser, completeUpdate, partialUpdate } = useMorador();
 
+  function deleteUserDelay() {
+    deleteUser(moradores.uid)
+    setTimeout(() =>  {
+      navigation.goBack();
+    }, 250);
+  }
+
   function update(uid) {
     if(imageChanged) {
       completeUpdate(uid, photo, nome, placa);
@@ -146,7 +153,7 @@ const CadastroMorador = ({ navigation }) => {
             </FormButton>
               :
             <FormButtons>
-              <Delete onPress={ () => { deleteUser(moradores.uid) ? navigation.goBack() : null }} ><TextButton>Apagar</TextButton></Delete>
+              <Delete onPress={ () => { deleteUserDelay() }} ><TextButton>Apagar</TextButton></Delete>
               <Modify onPress={ () => { update(moradores.uid) }} ><TextButton>Modificar</TextButton></Modify>
             </FormButtons>
           }

@@ -48,15 +48,12 @@ const AgendarVisitante = ({ navigation }) => {
   return(
     <>
       <Container>
-        <Title>Selecione o visitante:</Title>
+        <Title>Visitante:</Title>
         <BoxForm>
-          <Select onPress={ () => {  } }>
-            <Form>
-              <Image source={ require('../../img/profile.png') } />
-              <Text>Selecione...</Text>
-              <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
-            </Form>
-          </Select>
+          <Form>
+            <Image source={ require('../../img/profile.png') } />
+            <Text>Nome</Text>
+          </Form>
         </BoxForm>
         <Title>Selecione o tipo de visita:</Title>
         <FormSelect>
@@ -97,7 +94,7 @@ const AgendarVisitante = ({ navigation }) => {
         }
         </Container>
         <Add>
-          <TextButton>Adicionar</TextButton>
+          <TextButton>Alterar dados de visita</TextButton>
         </Add>
     </>
   );

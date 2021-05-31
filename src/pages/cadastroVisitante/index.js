@@ -22,6 +22,13 @@ const CadastroVisitante = ({ navigation }) => {
 
   const { visitantes, addUser, deleteUser, completeUpdate, partialUpdate } = useVisitante();
 
+  function deleteUserDelay() {
+    deleteUser(visitantes.uid);
+    setTimeout(() =>  {
+      navigation.goBack();
+    }, 250);
+  }
+
   function update(uid) {
     if(imageChanged) {
       completeUpdate(uid, photo, nome, placa);
@@ -146,7 +153,7 @@ const CadastroVisitante = ({ navigation }) => {
             </FormButton>
               :
             <FormButtons>
-              <Delete onPress={ () => { deleteUser(visitantes.uid) ? navigation.goBack() : null }} ><TextButton>Apagar</TextButton></Delete>
+              <Delete onPress={ () => {  deleteUserDelay() }} ><TextButton>Apagar</TextButton></Delete>
               <Modify onPress={ () => { update(visitantes.uid) }} ><TextButton>Modificar</TextButton></Modify>
             </FormButtons>
           }
