@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { Container, List, LineForm, DayButton, Days, Title } from './styles';
 
-import { useAgendarVisitanteContext } from '../../hooks/agendarVisitanteContext';
+import { useAgendar } from '../../hooks/agendar';
 
 import { useStackName } from '../../hooks/stackName';
 import { useRoute } from '@react-navigation/native';
@@ -15,7 +15,7 @@ const AgendarVisitanteRecorrente = ({ navigation }) => {
   const route = useRoute();
   const { setName } = useStackName();
 
-  const { daySelected, setDaySelected, setDaysWeek } = useAgendarVisitanteContext();
+  const { daySelected, setDaySelected, setDaysWeek } = useAgendar();
 
   const days = [
     { key: 0, day: 'toda segunda-feira', name: 'seg' },

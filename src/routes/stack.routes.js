@@ -24,7 +24,7 @@ import AlterarSenha from '../pages/alterarSenha';
 import { useStackName } from '../hooks/stackName';
 import { Morador } from '../hooks/morador';
 import { Visitante } from '../hooks/visitante';
-import { AgendarVisitanteContext } from '../hooks/agendarVisitanteContext';
+import { Agendar } from '../hooks/agendar';
 
 const Stack = createStackNavigator();
 
@@ -36,7 +36,7 @@ const StackRoutes = () => {
   return(
     <Morador>
       <Visitante>
-        <AgendarVisitanteContext>
+        <Agendar>
           <Stack.Navigator screenOptions={({ navigation }) => ({
             headerBackTitleVisible: false,
             headerTintColor: '#FFF',
@@ -63,7 +63,7 @@ const StackRoutes = () => {
             <Stack.Screen name='Reservar Ambiente' component={ ReservarAmbiente } />
             <Stack.Screen name='Alterar Senha' component={ AlterarSenha } />
           </Stack.Navigator>
-        </AgendarVisitanteContext>
+        </Agendar>
       </Visitante>
     </Morador>
   );

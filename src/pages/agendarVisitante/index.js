@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useStackName } from '../../hooks/stackName';
 import { useRoute } from '@react-navigation/native';
 
-import { useAgendarVisitanteContext } from '../../hooks/agendarVisitanteContext';
+import { useAgendar } from '../../hooks/agendar';
 
 import AgendarVisitanteTipo from '../agendarVisitanteTipo';
 import AgendarVisitanteUnico from '../agendarVisitanteUnico';
@@ -22,7 +22,7 @@ const AgendarVisitante = ({ navigation }) => {
   const [ date, setDate ] = useState(new Date(Date.now()));
   const [show, setShow] = useState(false);
 
-  const { setDaySelected, daysWeek, setDaysWeek } = useAgendarVisitanteContext();
+  const { setDaySelected, daysWeek, setDaysWeek } = useAgendar();
 
   const route = useRoute();
   const { setName } = useStackName();

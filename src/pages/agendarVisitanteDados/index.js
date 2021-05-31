@@ -5,7 +5,7 @@ import { useRoute } from '@react-navigation/native';
 
 import api from '../../services/api';
 
-import { useAgendarVisitanteContext } from '../../hooks/agendarVisitanteContext';
+import { useAgendar } from '../../hooks/agendar';
 
 import { Container, List, Button, Form, LineForm, Text, Image, DateText, InfoText } from './styles';
 
@@ -16,7 +16,7 @@ const AgendarVisitanteDados = ({ navigation }) => {
 
   const [ isFetching, setIsFetching ] = useState(false);
 
-  const { getVisitas, visitantes } = useAgendarVisitanteContext();
+  const { getVisitas, visitantes } = useAgendar();
 
   const route = useRoute();
   const { setName } = useStackName();
