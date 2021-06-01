@@ -16,7 +16,7 @@ const AgendarVisitanteDados = ({ navigation }) => {
 
   const [ isFetching, setIsFetching ] = useState(false);
 
-  const { getVisitas, visitantes } = useAgendar();
+  const { getVisitas, visitantes, setVisitante } = useAgendar();
 
   const route = useRoute();
   const { setName } = useStackName();
@@ -35,6 +35,7 @@ const AgendarVisitanteDados = ({ navigation }) => {
   }, [navigation]);
 
   function alterarDados(item) {
+    setVisitante(item);
     navigation.navigate('Agendar Visitante');
   }
 

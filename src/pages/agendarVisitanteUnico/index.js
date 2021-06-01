@@ -59,8 +59,8 @@ const AgendarVisitanteUnico = props => {
             <DateForm>
               <DateTimePicker
                 value={props.date}
-                minimumDate={Date.now()}
-                maximumDate={new Date(year, month, day)}
+                //minimumDate={Date.now()}
+                //maximumDate={new Date(year, month, day)}
                 mode={'date'}
                 display='spinner'
                 onChange={onChange}
@@ -76,8 +76,8 @@ const AgendarVisitanteUnico = props => {
     {props.show && (
       <DateTimePicker
         value={props.date}
-        minimumDate={Date.now()}
-        maximumDate={new Date(year, month, day)}
+        //minimumDate={Date.now()}
+        //maximumDate={new Date(year, month, day)}
         mode={'date'}
         display='default'
         onChange={onChange}

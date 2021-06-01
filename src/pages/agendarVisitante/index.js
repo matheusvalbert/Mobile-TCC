@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useStackName } from '../../hooks/stackName';
 import { useRoute } from '@react-navigation/native';
 
+import api from '../../services/api';
+
 import { useAgendar } from '../../hooks/agendar';
 
 import AgendarVisitanteTipo from '../agendarVisitanteTipo';
@@ -17,12 +19,9 @@ const AgendarVisitante = ({ navigation }) => {
 
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ dayWeekModal, setDayWeekModal ] = useState(false);
-  const [ type, setType ] = useState('Selecione o tipo...');
-  const [ dayYear, setDayYear ] = useState('Selecione o dia...');
-  const [ date, setDate ] = useState(new Date(Date.now()));
   const [show, setShow] = useState(false);
 
-  const { setDaySelected, daysWeek, setDaysWeek } = useAgendar();
+  const { setDaySelected, daysWeek, setDaysWeek, visitante, type, setType, setDate, setDayYear, dayYear, date, alterarDados } = useAgendar();
 
   const route = useRoute();
   const { setName } = useStackName();
@@ -51,8 +50,12 @@ const AgendarVisitante = ({ navigation }) => {
         <Title>Visitante:</Title>
         <BoxForm>
           <Form>
-            <Image source={ require('../../img/profile.png') } />
-            <Text>Nome</Text>
+            <Image source={{ uri: `http://localhost:3333/morador/profileImage/${visitante.img_name}`,
+              headers: {
+                Authorization: api.defaults.headers.Authorization
+              }
+            }} />
+            <Text>{visitante.name}</Text>
           </Form>
         </BoxForm>
         <Title>Selecione o tipo de visita:</Title>
@@ -62,7 +65,7 @@ const AgendarVisitante = ({ navigation }) => {
             <Icon name='arrow-drop-down' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
           </Select>
         </FormSelect>
-        <AgendarVisitanteTipo modalVisible={modalVisible} setModalVisible={setModalVisible} setType={setType}/>
+        <AgendarVisitanteTipo modalVisible={modalVisible} setModalVisible={setModalVisible} setType={setType} type={type} />
         {
           type === 'Visita recorrente'
             ?
@@ -93,7 +96,7 @@ const AgendarVisitante = ({ navigation }) => {
           null
         }
         </Container>
-        <Add>
+        <Add onPress={ () => alterarDados() }>
           <TextButton>Alterar dados de visita</TextButton>
         </Add>
     </>

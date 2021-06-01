@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, TouchableWithoutFeedback } from 'react-native';
 
 import { InvisibleForm, SelectTypeForm, HeaderButtons, Button, PickerForm, SelectionText, ButtonPicker, TextPicker, BorderButton } from './styles';
@@ -8,7 +8,11 @@ Icon.loadFont();
 
 const AgendarVisitanteTipo = props => {
 
-  const [ aux, setAux ] = useState('Visita recorrente');
+  const [ aux, setAux ] = useState('');
+
+  useEffect(() => {
+    setAux(props.type);
+  },[props.type]);
 
   return(
     <Modal
@@ -31,6 +35,17 @@ const AgendarVisitanteTipo = props => {
                 </Button>
               </HeaderButtons>
               <PickerForm>
+              <BorderButton>
+                <ButtonPicker onPress={ () => setAux('Nenhuma') }>
+                    <TextPicker>Nenhuma</TextPicker>
+                    { aux === 'Nenhuma'
+                        ?
+                      <Icon name='check' size={ 20 } color='#03BB85' />
+                        :
+                      null
+                    }
+                  </ButtonPicker>
+                </BorderButton>
                 <BorderButton>
                   <ButtonPicker onPress={ () => setAux('Visita recorrente') }>
                     <TextPicker>Visita recorrente</TextPicker>
