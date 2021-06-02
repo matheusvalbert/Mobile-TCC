@@ -46,30 +46,27 @@ const AdicionarModificarListaDeVisitantes = props => {
             <NameText>Visitantes:</NameText>
             <List
               data={props.visitantes}
-              renderItem={({ item }) => {
-                item['selected'] = true;
-                return(
-                  <LineForm>
-                    <ButtonList onPress={ () => { addRemoveUids(item.uid) } } >
-                      <Form>
-                        <Image source={{ uri: `http://localhost:3333/visitante/profileImage/${item.img_name}`,
-                          headers: {
-                            Authorization: api.defaults.headers.Authorization
-                          }
-                        }}/>
-                        <Text> { item.name } </Text>
-                        {
-                          uids.includes(item.uid)
-                            ?
-                          <Icon name='check' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
-                            :
-                          null
+              renderItem={({ item }) => (
+                <LineForm>
+                  <ButtonList onPress={ () => { addRemoveUids(item.uid) } } >
+                    <Form>
+                      <Image source={{ uri: `http://localhost:3333/visitante/profileImage/${item.img_name}`,
+                        headers: {
+                          Authorization: api.defaults.headers.Authorization
                         }
-                      </Form>
-                    </ButtonList>
-                  </LineForm>
-                )}
-              }
+                      }}/>
+                      <Text> { item.name } </Text>
+                      {
+                        uids.includes(item.uid)
+                          ?
+                        <Icon name='check' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
+                          :
+                        null
+                      }
+                    </Form>
+                  </ButtonList>
+                </LineForm>
+              )}
               keyExtractor={item => item.uid}
             />
           </Container>
