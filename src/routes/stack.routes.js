@@ -17,7 +17,7 @@ import CadastroVisitante from '../pages/cadastroVisitante';
 import AgendarVisitanteDados from '../pages/agendarVisitanteDados';
 import AgendarVisitante from '../pages/agendarVisitante';
 import AgendarVisitanteRecorrente from '../pages/agendarVisitanteRecorrente';
-import ListaDeVisitantes from '../pages/criarListaDeVisitantes';
+import ListaDeVisitantes from '../pages/listaDeVisitantes';
 import ReservarAmbiente from '../pages/reservarAmbiente';
 import AlterarSenha from '../pages/alterarSenha';
 
