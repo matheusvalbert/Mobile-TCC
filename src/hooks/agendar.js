@@ -20,31 +20,27 @@ export const Agendar = ({ children }) => {
     updateDaysWeek();
   }, [visitante]);
 
-  function alterarDados() {
-    if(type === 'Nenhuma') {
-      modify(visitante.visitas_uid, type, 'Aguardando cadastro', null, null, null, null, null, null, null, null);
-      //console.log(type);
-      //console.log('Aguardando cadastro');
-    }
-    if(type === 'Visita recorrente') {
-      //modify(visitante.visitas_uid, type, daysWeek);
-      //console.log(type);
-      //console.log(daysWeek);
-      //console.log(daySelected);
-
-      let arrayDays = [];
-
-      for(var i = 0; i < 7; i++) {
-        arrayDays.push(daySelected[i] === true ? 1 : 0);
+  async function alterarDados() {
+    try {
+      if(type === 'Nenhuma') {
+        await modify(visitante.visitas_uid, type, 'Aguardando cadastro', null, null, null, null, null, null, null, null);
       }
+      if(type === 'Visita recorrente') {
 
-      modify(visitante.visitas_uid, type, daysWeek, null, arrayDays[0], arrayDays[1], arrayDays[2], arrayDays[3], arrayDays[4], arrayDays[5], arrayDays[6]);
+        let arrayDays = [];
+
+        for(var i = 0; i < 7; i++) {
+          arrayDays.push(daySelected[i] === true ? 1 : 0);
+        }
+
+        await modify(visitante.visitas_uid, type, daysWeek, null, arrayDays[0], arrayDays[1], arrayDays[2], arrayDays[3], arrayDays[4], arrayDays[5], arrayDays[6]);
+      }
+      else if(type === 'Visita única') {
+        await modify(visitante.visitas_uid, type, dayYear, date.toISOString().slice(0, 10), null, null, null, null, null, null, null, null);
+      }
     }
-    else if(type === 'Visita única') {
-      modify(visitante.visitas_uid, type, dayYear, date, null, null, null, null, null, null, null, null);
-      //console.log(type);
-      //console.log(dayYear);
-      //console.log(date);
+    catch(err) {
+      console.log(err);
     }
   }
 
@@ -65,7 +61,7 @@ export const Agendar = ({ children }) => {
   }
 
   function updateDayYear() {
-    setDate(visitante.date);
+    setDate(new Date(Date.now()));
     setDayYear(visitante.text);
   }
 

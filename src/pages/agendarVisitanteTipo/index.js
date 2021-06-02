@@ -10,6 +10,17 @@ const AgendarVisitanteTipo = props => {
 
   const [ aux, setAux ] = useState('');
 
+  function resetType() {
+    if(props.type !== 'Visita recorrente') {
+      props.setDaySelected([ false, false, false, false, false, false, false ]);
+      props.setDaysWeek('Selecione os dias...');
+    }
+    else if(props.type !== 'Visita única') {
+      props.setDate(new Date(Date.now()));
+      props.setDayYear('Selecione o dia...');
+    }
+  }
+
   useEffect(() => {
     setAux(props.type);
   },[props.type]);
@@ -30,7 +41,7 @@ const AgendarVisitanteTipo = props => {
                 <Button onPress={ () => props.setModalVisible(false) }>
                     <SelectionText>Calcelar</SelectionText>
                 </Button>
-                <Button onPress={ () => { props.setType(aux); props.setModalVisible(false) }}>
+                <Button onPress={ () => { props.setType(aux); props.setModalVisible(false); resetType() }}>
                   <SelectionText>Ok</SelectionText>
                 </Button>
               </HeaderButtons>

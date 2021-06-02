@@ -8,9 +8,9 @@ export function completeModify(data) {
 export function modify(uid, name, plate) {
 
   const response = api.patch('morador/modify', {
-    uid : uid,
-    name : name,
-    plate : plate
+    uid: uid,
+    name: name,
+    plate: plate
   })
 }
 

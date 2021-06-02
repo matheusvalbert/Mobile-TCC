@@ -27,17 +27,6 @@ const AgendarVisitante = ({ navigation }) => {
   const { setName } = useStackName();
 
   useEffect(() => {
-    if(type !== 'Visita recorrente') {
-      setDaySelected([ false, false, false, false, false, false, false ]);
-      setDaysWeek('Selecione os dias...');
-    }
-    else if(type !== 'Visita única') {
-      setDate(new Date(Date.now()));
-      setDayYear('Selecione o dia...');
-    }
-  }, [type]);
-
-  useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setName(route.name);
     });
@@ -65,7 +54,7 @@ const AgendarVisitante = ({ navigation }) => {
             <Icon name='arrow-drop-down' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
           </Select>
         </FormSelect>
-        <AgendarVisitanteTipo modalVisible={modalVisible} setModalVisible={setModalVisible} setType={setType} type={type} />
+        <AgendarVisitanteTipo modalVisible={modalVisible} setModalVisible={setModalVisible} setType={setType} type={type} setDaySelected={setDaySelected} setDaysWeek={setDaysWeek} setDate={setDate} setDayYear={setDayYear} />
         {
           type === 'Visita recorrente'
             ?
@@ -96,7 +85,7 @@ const AgendarVisitante = ({ navigation }) => {
           null
         }
         </Container>
-        <Add onPress={ () => alterarDados() }>
+        <Add onPress={ () => { alterarDados(); navigation.goBack() } }>
           <TextButton>Alterar dados de visita</TextButton>
         </Add>
     </>
