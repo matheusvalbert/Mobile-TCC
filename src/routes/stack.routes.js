@@ -25,6 +25,7 @@ import { useStackName } from '../hooks/stackName';
 import { Morador } from '../hooks/morador';
 import { Visitante } from '../hooks/visitante';
 import { Agendar } from '../hooks/agendar';
+import { Lista } from '../hooks/lista';
 
 const Stack = createStackNavigator();
 
@@ -37,32 +38,34 @@ const StackRoutes = () => {
     <Morador>
       <Visitante>
         <Agendar>
-          <Stack.Navigator screenOptions={({ navigation }) => ({
-            headerBackTitleVisible: false,
-            headerTintColor: '#FFF',
-            headerStyle: { backgroundColor: '#03BB85' },
-            headerRight: () => (
-              name === 'Controle de Acesso' || name === 'Notificações'
-              ?
-                <TouchableOpacity style={{ paddingRight: 10 }} onPress={ () => navigation.navigate('Alterar Senha') }>
-                  <IconPass name='onepassword' size={ 25 } color={ '#FFF' } />
-                </TouchableOpacity>
-              :
-                null
-            )
-          })}>
-            <Stack.Screen name='Tab' component={ TabRoutes } options={{ title: name }} />
-            <Stack.Screen name='Dados Moradores' component={ DadosMorador } />
-            <Stack.Screen name='Cadastro Morador' component={ CadastroMorador } />
-            <Stack.Screen name='Dados Visitante' component={ DadosVisitante } />
-            <Stack.Screen name='Cadastro Visitante' component={ CadastroVisitante } />
-            <Stack.Screen name='Agendar Visitante Dados' component={ AgendarVisitanteDados } />
-            <Stack.Screen name='Agendar Visitante' component={ AgendarVisitante } />
-            <Stack.Screen name='Agendar Visitante Recorrente' component={ AgendarVisitanteRecorrente } />
-            <Stack.Screen name='Lista de Visitantes' component={ ListaDeVisitantes } />
-            <Stack.Screen name='Reservar Ambiente' component={ ReservarAmbiente } />
-            <Stack.Screen name='Alterar Senha' component={ AlterarSenha } />
-          </Stack.Navigator>
+          <Lista>
+            <Stack.Navigator screenOptions={({ navigation }) => ({
+              headerBackTitleVisible: false,
+              headerTintColor: '#FFF',
+              headerStyle: { backgroundColor: '#03BB85' },
+              headerRight: () => (
+                name === 'Controle de Acesso' || name === 'Notificações'
+                ?
+                  <TouchableOpacity style={{ paddingRight: 10 }} onPress={ () => navigation.navigate('Alterar Senha') }>
+                    <IconPass name='onepassword' size={ 25 } color={ '#FFF' } />
+                  </TouchableOpacity>
+                :
+                  null
+              )
+            })}>
+              <Stack.Screen name='Tab' component={ TabRoutes } options={{ title: name }} />
+              <Stack.Screen name='Dados Moradores' component={ DadosMorador } />
+              <Stack.Screen name='Cadastro Morador' component={ CadastroMorador } />
+              <Stack.Screen name='Dados Visitante' component={ DadosVisitante } />
+              <Stack.Screen name='Cadastro Visitante' component={ CadastroVisitante } />
+              <Stack.Screen name='Agendar Visitante Dados' component={ AgendarVisitanteDados } />
+              <Stack.Screen name='Agendar Visitante' component={ AgendarVisitante } />
+              <Stack.Screen name='Agendar Visitante Recorrente' component={ AgendarVisitanteRecorrente } />
+              <Stack.Screen name='Lista de Visitantes' component={ ListaDeVisitantes } />
+              <Stack.Screen name='Reservar Ambiente' component={ ReservarAmbiente } />
+              <Stack.Screen name='Alterar Senha' component={ AlterarSenha } />
+            </Stack.Navigator>
+          </Lista>
         </Agendar>
       </Visitante>
     </Morador>

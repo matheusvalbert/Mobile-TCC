@@ -3,6 +3,8 @@ import { Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import api from '../../services/api';
 
+import { useLista } from '../../hooks/lista';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 Icon.loadFont();
 
@@ -10,15 +12,27 @@ import { ViewForm, HeaderButtons, Button, SelectionText, Container, NameText, In
 
 const AdicionarModificarListaDeVisitantes = props => {
 
-  const [ uids, setUids ] = useState([]);
+  const { addList, getLists, updateList } = useLista();
 
   function addRemoveUids(uid) {
-    if(uids.includes(uid)) {
-      setUids(uids.filter(element => element !== uid));
+    if(props.uids.includes(uid)) {
+      props.setUids(props.uids.filter(element => element !== uid));
     }
     else {
-      setUids(uids => [...uids, uid]);
+      props.setUids(uids => [...uids, uid]);
     }
+  }
+
+  function okPress() {
+    console.log(props.id);
+    if(props.id === '')
+      addList(props.nome, props.uids);
+    else
+      updateList(props.id, props.nome, props.uids);
+    setTimeout(() =>  {
+      getLists()
+      props.setModalVisible(false);
+    }, 250);
   }
 
   return(
@@ -35,13 +49,13 @@ const AdicionarModificarListaDeVisitantes = props => {
             <Button onPress={ () => props.setModalVisible(false) }>
                 <SelectionText>Calcelar</SelectionText>
             </Button>
-            <Button onPress={ () => { props.setModalVisible(false); console.log(uids) }}>
+            <Button onPress={ () => okPress() }>
               <SelectionText>Ok</SelectionText>
             </Button>
           </HeaderButtons>
           <Container>
             <NameText>Lista:</NameText>
-            <Input placeholder="Nome da lista" />
+            <Input placeholder="Nome da lista" value={props.nome} onChangeText={props.setNome} />
             <LineBold />
             <NameText>Visitantes:</NameText>
             <List
@@ -57,7 +71,7 @@ const AdicionarModificarListaDeVisitantes = props => {
                       }}/>
                       <Text> { item.name } </Text>
                       {
-                        uids.includes(item.uid)
+                        props.uids.includes(item.uid)
                           ?
                         <Icon name='check' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
                           :
