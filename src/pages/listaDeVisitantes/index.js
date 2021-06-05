@@ -86,7 +86,7 @@ const CriarListaDeVisitantes = ({ navigation }) => {
           onRefresh={ () => update() }
           renderItem={({ item }) => (
             <RowFront>
-              <Button onPress={ () => { modify(item); rm.closeRow() }} >
+              <Button onPress={ () => { modify(item); try { rm.closeRow() } catch(err) { } }} >
                 <Form>
                   <Text> { item.name } </Text>
                   <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
@@ -111,7 +111,7 @@ const CriarListaDeVisitantes = ({ navigation }) => {
         />
         <AdicionarModificarListaDeVisitantes modalVisible={modalVisible} setModalVisible={setModalVisible} visitantes={visitantes} nome={nome} setNome={setNome} uids={uids} setUids={setUids} id={id} />
       </Container>
-      <Add onPress={ () => { create(); rm.closeRow() }} >
+      <Add onPress={ () => { create(); try { rm.closeRow() } catch(err) { } }} >
       <Plus name='plus' size={ 20 } color='#FFF' />
       </Add>
     </>
