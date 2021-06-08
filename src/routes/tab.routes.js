@@ -7,7 +7,7 @@ Icon.loadFont();
 const Tab = createBottomTabNavigator();
 
 import Notificacoes from '../pages/notificacoes';
-import ControleDeAcesso from '../pages/controleDeAcesso';
+import Menu from '../pages/menu';
 
 import { useStackName } from '../hooks/stackName';
 
@@ -25,9 +25,9 @@ const TabRoutes = () => {
             <Icon name='notifications' size={ 25 } color={ color } />
         )
       }}/>
-      <Tab.Screen name='Controle de Acesso' component={ControleDeAcesso}  options={{
+      <Tab.Screen name='Menu' component={Menu}  options={{
         tabBarIcon: ({ color }) => (
-          <Icon name='settings' size={ 25 } color={ color } />
+          <Icon name='menu' size={ 25 } color={ color } />
         )
       }} />
     </Tab.Navigator>

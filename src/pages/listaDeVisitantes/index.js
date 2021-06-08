@@ -68,10 +68,8 @@ const CriarListaDeVisitantes = ({ navigation }) => {
   }
 
   function onRowOpen(rowKey, rowMap, toValue) {
-    // Grab reference to this row
-    const rowRef = rowMap[rowKey];
 
-    // Do something with the row
+    const rowRef = rowMap[rowKey];
     rowRef.closeRow();
   }
 

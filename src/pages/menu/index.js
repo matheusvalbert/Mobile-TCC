@@ -8,7 +8,7 @@ import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 Icon.loadFont();
 
-const ControleDeAcesso = ({ navigation }) => {
+const Menu = ({ navigation }) => {
 
   const { signOut } = useAuth();
 
@@ -53,7 +53,7 @@ const ControleDeAcesso = ({ navigation }) => {
         </Button>
       </Form>
       <Form>
-        <Button onPress={ () => navigation.navigate('Reservar Ambiente') }>
+        <Button onPress={ () => navigation.navigate('Ambientes') }>
           <FormButton>
             <Icon name='weekend' size={ 80 } color='#03BB85' />
             <ButtonTittle>Reservar ambiente</ButtonTittle>
@@ -70,4 +70,4 @@ const ControleDeAcesso = ({ navigation }) => {
   );
 }
 
-export default ControleDeAcesso;
+export default Menu;

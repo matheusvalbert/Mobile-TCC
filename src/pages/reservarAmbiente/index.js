@@ -15,7 +15,11 @@ const ReservarAmbiente = ({ navigation }) => {
   day < 10 ? day = '0' + day : day;
   const date = year + '-' + month + '-' + day;
 
- const [ markedDates, setMarkedDates ] = useState({});
+ const [ markedDates, setMarkedDates ] = useState({
+    [date]: {
+      selected: true, selectedColor: '#03BB85'
+    }
+  });
 
   const route = useRoute();
   const { setName } = useStackName();
@@ -23,23 +27,26 @@ const ReservarAmbiente = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setName(route.name);
-      today();
     });
     return unsubscribe;
   }, [navigation]);
 
-  function today() {
+  const onDayPress = day => {
+    console.log(markedDates);
     setMarkedDates({
-      [date]: {
+      ...markedDates,
+      [day.dateString]: {
         selected: true, selectedColor: '#03BB85'
       }
-    })
-  }
+    });
+    console.log(markedDates);
+  };
 
   return(
     <Container>
       <Calendario
         markedDates={ markedDates }
+        onDayPress={onDayPress}
       />
     </Container>
   );
