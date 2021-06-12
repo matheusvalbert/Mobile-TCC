@@ -12,7 +12,7 @@ import { useReservar } from '../../hooks/reservar';
 
 const ReservarAmbienteDados = ({ navigation }) => {
 
-  const { getAmbientes, ambientes } = useReservar();
+  const { getAmbientes, ambientes, getReservas, setMarkedDates, setOwnMarked, setOtherMarked } = useReservar();
 
   const [ isFetching, setIsFetching ] = useState(false);
 
@@ -32,7 +32,11 @@ const ReservarAmbienteDados = ({ navigation }) => {
     setIsFetching(false);
   }
 
-  function dadosReserva() {
+  function dadosReserva(uid) {
+    setOtherMarked([]);
+    setOwnMarked([]);
+    setMarkedDates({ });
+    getReservas(uid);
     navigation.navigate('Reservar Ambiente');
   }
 
@@ -44,7 +48,7 @@ const ReservarAmbienteDados = ({ navigation }) => {
       onRefresh={ () => update() }
       renderItem={({ item }) => (
         <LineForm>
-          <Button onPress={ () => { dadosReserva() } } >
+          <Button onPress={ () => { dadosReserva(item.uid) } } >
             <Form>
               <Text> { item.name } </Text>
               <Icon name='arrow-right' size={ 20 } color='#03BB85' style={{ position: 'absolute', right: 0 }} />
