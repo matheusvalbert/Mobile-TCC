@@ -7,10 +7,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 const AgendarVisitanteUnico = props => {
 
-  const year = new Date().getFullYear() + 2;
-  const month = new Date().getMonth();
-  const day = new Date().getDate();
-
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || props.date;
     props.setShow(false);

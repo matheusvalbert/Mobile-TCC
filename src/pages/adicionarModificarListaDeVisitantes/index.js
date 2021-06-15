@@ -24,15 +24,18 @@ const AdicionarModificarListaDeVisitantes = props => {
   }
 
   function okPress() {
-    console.log(props.id);
-    if(props.id === '')
-      addList(props.nome, props.uids);
-    else
-      updateList(props.id, props.nome, props.uids);
-    setTimeout(() =>  {
-      getLists()
-      props.setModalVisible(false);
-    }, 250);
+    if(props.nome === '' || props.uids.length <= 0)
+      alert('Escolha um nome para a lista e selecione pelo menos 1 convidado');
+    else {
+      if(props.id === '')
+        addList(props.nome, props.uids);
+      else
+        updateList(props.id, props.nome, props.uids);
+      setTimeout(() =>  {
+        getLists()
+        props.setModalVisible(false);
+      }, 250);
+    }
   }
 
   return(

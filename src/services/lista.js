@@ -17,8 +17,6 @@ export function newList(name, ids) {
 
 export function modify(id, name, ids) {
 
-  console.log(id, name, ids);
-
   const response = api.patch('/listas/modify', {
     name: name,
     ids: ids,
