@@ -62,7 +62,7 @@ const CadastroMorador = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setNome(moradores.name);
-      setPlaca(moradores.plate);
+      setPlaca(moradores.plate === undefined ? '' : moradores.plate);
       setPhoto('');
       setImageChanged(false);
     });

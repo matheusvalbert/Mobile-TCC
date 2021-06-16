@@ -62,7 +62,7 @@ const CadastroVisitante = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setNome(visitantes.name);
-      setPlaca(visitantes.plate);
+      setPlaca(visitantes.plate === undefined ? '' : visitantes.plate);
       setPhoto('');
       setImageChanged(false);
     });
@@ -74,7 +74,6 @@ const CadastroVisitante = ({ navigation }) => {
       cropping: true,
     }).then(image => {
       setImageChanged(true);
-      //console.log(image);
       setPhoto(image);
       setModalVisible(false);
     });
@@ -85,7 +84,6 @@ const CadastroVisitante = ({ navigation }) => {
       cropping: true
     }).then(image => {
       setImageChanged(true);
-      //console.log(image);
       setPhoto(image);
       setModalVisible(false);
     });

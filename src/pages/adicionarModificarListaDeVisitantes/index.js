@@ -24,8 +24,8 @@ const AdicionarModificarListaDeVisitantes = props => {
   }
 
   function okPress() {
-    if(props.nome === '' || props.uids.length <= 0)
-      alert('Escolha um nome para a lista e selecione pelo menos 1 convidado');
+    if(props.nome === '')
+      alert('Escolha um nome para a lista');
     else {
       if(props.id === '')
         addList(props.nome, props.uids);
