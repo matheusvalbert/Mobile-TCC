@@ -45,6 +45,7 @@ export const NameText = styled.Text`
 
 export const Input = styled.TextInput.attrs({
   placeholderTextColor: '#999',
+  selectionColor: '#03BB85'
 })`
   margin-top: 10px;
   margin-bottom: 15px;

@@ -19,6 +19,7 @@ export const Form = styled.View`
 
 export const Input = styled.TextInput.attrs({
   placeholderTextColor: '#999',
+  selectionColor: '#03BB85'
 })`
   margin-bottom: 15px;
   padding: 12px 15px;

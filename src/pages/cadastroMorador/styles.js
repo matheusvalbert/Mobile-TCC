@@ -33,6 +33,7 @@ export const Text = styled.Text`
 
 export const Input = styled.TextInput.attrs({
   placeholderTextColor: '#999',
+  selectionColor: '#03BB85'
 })`
   height: 50px;
   width: 230px;
