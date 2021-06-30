@@ -39,7 +39,7 @@ const AgendarVisitante = ({ navigation }) => {
         <Title>Visitante:</Title>
         <BoxForm>
           <Form>
-            <Image source={{ uri: `http://localhost:3333/morador/profileImage/${visitante.img_name}`,
+            <Image source={{ uri: `http://192.168.50.34:3333/morador/profileImage/${visitante.img_name}`,
               headers: {
                 Authorization: api.defaults.headers.Authorization
               }

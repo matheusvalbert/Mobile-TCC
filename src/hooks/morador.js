@@ -13,9 +13,9 @@ export const Morador = ({ children }) => {
     const data = new FormData();
 
     data.append('file', {
-      name: photo.filename,
+      name: photo.path,
       type: photo.mime,
-      uri: Platform.OS === 'ios' ? photo.sourceURL.replace('file://', '') : photo.sourceURL,
+      uri: photo.path,
     });
 
     data.append('uid', uid);
@@ -74,9 +74,9 @@ export const Morador = ({ children }) => {
     const data = new FormData();
 
     data.append('file', {
-      name: photo.filename,
+      name: photo.path,
       type: photo.mime,
-      uri: Platform.OS === 'ios' ? photo.sourceURL.replace('file://', '') : photo.sourceURL,
+      uri: photo.path,
     });
 
     data.append('name', nome);
