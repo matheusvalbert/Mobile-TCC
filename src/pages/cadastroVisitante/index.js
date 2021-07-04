@@ -129,7 +129,7 @@ const CadastroVisitante = ({ navigation }) => {
             !visitantes ?
               !imageChanged ? require('../../img/profile.png') : { uri: photo.path }
                 :
-              { uri: !imageChanged ? `http://192.168.50.34:3333/visitante/profileImage/${visitantes.img_name}` : photo.path,
+              { uri: !imageChanged ? `${api.defaults.baseURL}/visitante/profileImage/${visitantes.img_name}` : photo.path,
                 headers: {
                   Authorization: api.defaults.headers.Authorization
                 }

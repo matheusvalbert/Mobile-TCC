@@ -67,7 +67,7 @@ const AdicionarModificarListaDeVisitantes = props => {
                 <LineForm>
                   <ButtonList onPress={ () => { addRemoveUids(item.uid) } } >
                     <Form>
-                      <Image source={{ uri: `http://192.168.50.34:3333/visitante/profileImage/${item.img_name}`,
+                      <Image source={{ uri: `${api.defaults.baseURL}/visitante/profileImage/${item.img_name}`,
                         headers: {
                           Authorization: api.defaults.headers.Authorization
                         }

@@ -5,7 +5,7 @@ export const ViewForm = styled.View`
   bottom: 0;
   background-color: #FFF;
   width: 100%;
-  height: 95%;
+  height: 94%;
   border-radius: 30px;
 `;
 
