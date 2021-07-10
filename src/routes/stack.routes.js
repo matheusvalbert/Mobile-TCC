@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, Button } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -23,60 +24,69 @@ import ReservarAmbiente from '../pages/reservarAmbiente';
 import AlterarSenha from '../pages/alterarSenha';
 
 import { useStackName } from '../hooks/stackName';
+import { useNotificacoes } from '../hooks/notificacoes';
 import { Morador } from '../hooks/morador';
 import { Visitante } from '../hooks/visitante';
 import { Agendar } from '../hooks/agendar';
 import { Lista } from '../hooks/lista';
 import { Reservar } from '../hooks/reservar';
 
-const Stack = createStackNavigator();
+import messaging from '@react-native-firebase/messaging';
 
+messaging().setBackgroundMessageHandler(async remoteMessage => {
+  console.log('Message handled in the background!', remoteMessage);
+});
+
+const Stack = createStackNavigator();
 
 const StackRoutes = () => {
 
   const { name } = useStackName();
+  const { navigationRef } = useNotificacoes();
 
   return(
-    <Morador>
-      <Visitante>
-        <Agendar>
-          <Lista>
-            <Reservar>
-              <Stack.Navigator screenOptions={({ navigation }) => ({
-                headerBackTitleVisible: false,
-                headerTintColor: '#FFF',
-                headerStyle: { backgroundColor: '#03BB85' },
-                headerRight: () => (
-                  name === 'Menu'
-                  ?
-                    <TouchableOpacity style={{ paddingRight: 10 }} onPress={ () => navigation.navigate('Alterar Senha') }>
-                      <IconPass name='settings' size={ 25 } color={ '#FFF' } />
-                    </TouchableOpacity>
-                  :
-                    null
-                )
-              })}>
-                <Stack.Screen name='Tab' component={ TabRoutes } options={{ title: name }} />
-                <Stack.Screen name='Dados Moradores' component={ DadosMorador } />
-                <Stack.Screen name='Cadastro Morador' component={ CadastroMorador } />
-                <Stack.Screen name='Dados Visitante' component={ DadosVisitante } />
-                <Stack.Screen name='Cadastro Visitante' component={ CadastroVisitante } />
-                <Stack.Screen name='Agendar Visitante Dados' component={ AgendarVisitanteDados } />
-                <Stack.Screen name='Agendar Visitante' component={ AgendarVisitante } />
-                <Stack.Screen name='Agendar Visitante Recorrente' component={ AgendarVisitanteRecorrente } />
-                <Stack.Screen name='Lista de Visitantes' component={ ListaDeVisitantes } />
-                <Stack.Screen name='Ambientes' component={ ReservarAmbienteDados } />
-                <Stack.Screen name='Reservar Ambiente' component={ ReservarAmbiente } />
-                <Stack.Screen name='Alterar Senha' component={ AlterarSenha } screenOptions={({ navigation }) => ({
+    <NavigationContainer ref={navigationRef}>
+      <Morador>
+        <Visitante>
+          <Agendar>
+            <Lista>
+              <Reservar>
+                <Stack.Navigator initialRouteName={'Tab'} screenOptions={({ navigation }) => ({
+                  headerBackTitleVisible: false,
                   headerTintColor: '#FFF',
-                headerStyle: { backgroundColor: '#03BB85' },
-                })} />
-              </Stack.Navigator>
-            </Reservar>
-          </Lista>
-        </Agendar>
-      </Visitante>
-    </Morador>
+                  headerStyle: { backgroundColor: '#03BB85' },
+                  headerRight: () => (
+                    name === 'Menu'
+                    ?
+                      <TouchableOpacity style={{ paddingRight: 10 }} onPress={ () => navigation.navigate('Alterar Senha') }>
+                        <IconPass name='settings' size={ 25 } color={ '#FFF' } />
+                      </TouchableOpacity>
+                    :
+                      null
+                  )
+                })}>
+                  <Stack.Screen name='Tab' component={ TabRoutes } options={{ title: name }} />
+                  <Stack.Screen name='Dados Moradores' component={ DadosMorador } />
+                  <Stack.Screen name='Cadastro Morador' component={ CadastroMorador } />
+                  <Stack.Screen name='Dados Visitante' component={ DadosVisitante } />
+                  <Stack.Screen name='Cadastro Visitante' component={ CadastroVisitante } />
+                  <Stack.Screen name='Agendar Visitante Dados' component={ AgendarVisitanteDados } />
+                  <Stack.Screen name='Agendar Visitante' component={ AgendarVisitante } />
+                  <Stack.Screen name='Agendar Visitante Recorrente' component={ AgendarVisitanteRecorrente } />
+                  <Stack.Screen name='Lista de Visitantes' component={ ListaDeVisitantes } />
+                  <Stack.Screen name='Ambientes' component={ ReservarAmbienteDados } />
+                  <Stack.Screen name='Reservar Ambiente' component={ ReservarAmbiente } />
+                  <Stack.Screen name='Alterar Senha' component={ AlterarSenha } screenOptions={({ navigation }) => ({
+                    headerTintColor: '#FFF',
+                  headerStyle: { backgroundColor: '#03BB85' },
+                  })} />
+                </Stack.Navigator>
+              </Reservar>
+            </Lista>
+          </Agendar>
+        </Visitante>
+      </Morador>
+    </NavigationContainer>
   );
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { View, ActivityIndicator } from 'react-native';
 
 import { useAuth } from './hooks/auth';
 import { StackName } from './hooks/stackName';
+import { Notificacoes } from './hooks/notificacoes';
 
 import Login from './pages/login';
 import App from './routes/stack.routes';
@@ -24,9 +24,9 @@ const Routes = () => {
     signed
     ?
       <StackName>
-        <NavigationContainer>
+        <Notificacoes>
           <App />
-        </NavigationContainer>
+        </Notificacoes>
       </StackName>
     :
       <Login />

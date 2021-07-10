@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import { ViewForm, HeaderButtons, Button, SelectionText, Container, NameText, LineForm, ButtonList, Form, Text, List } from './styles';
