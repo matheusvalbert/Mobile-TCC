@@ -21,6 +21,7 @@ import AgendarVisitanteRecorrente from '../pages/agendarVisitanteRecorrente';
 import ListaDeVisitantes from '../pages/listaDeVisitantes';
 import ReservarAmbienteDados from '../pages/reservarAmbienteDados';
 import ReservarAmbiente from '../pages/reservarAmbiente';
+import DetalhesNotificacao from '../pages/detalhesNotificacao';
 import AlterarSenha from '../pages/alterarSenha';
 
 import { useStackName } from '../hooks/stackName';
@@ -76,6 +77,7 @@ const StackRoutes = () => {
                   <Stack.Screen name='Lista de Visitantes' component={ ListaDeVisitantes } />
                   <Stack.Screen name='Ambientes' component={ ReservarAmbienteDados } />
                   <Stack.Screen name='Reservar Ambiente' component={ ReservarAmbiente } />
+                  <Stack.Screen name='Detalhes notificacao' component={ DetalhesNotificacao } />
                   <Stack.Screen name='Alterar Senha' component={ AlterarSenha } screenOptions={({ navigation }) => ({
                     headerTintColor: '#FFF',
                   headerStyle: { backgroundColor: '#03BB85' },
