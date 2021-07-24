@@ -4,9 +4,12 @@ import { useStackName } from '../../hooks/stackName';
 
 import { Container, Text, Button, TextButton, TextName, TextNewVisitor, FormButtons, ButtonAccept, ButtonReject } from './styles';
 
+import { useNotificacoes } from '../../hooks/notificacoes';
+
 const DetalhesNotificacao = ({ route, navigation }) => {
 
-  const { notification, visitor } = route.params;
+  const { responseNotification, discardNotification } = useNotificacoes();
+  const { uid, notification, visitor } = route.params;
 
   const { setName } = useStackName();
 
@@ -24,7 +27,7 @@ const DetalhesNotificacao = ({ route, navigation }) => {
           ?
         <>
           <Text>{ notification }</Text>
-          <Button><TextButton>Remover Notificação</TextButton></Button>
+          <Button onPress={ () => { discardNotification(uid); navigation.goBack() }}><TextButton>Remover Notificação</TextButton></Button>
         </>
           :
         visitor
@@ -34,8 +37,8 @@ const DetalhesNotificacao = ({ route, navigation }) => {
           <TextName>{ visitor }</TextName>
           <TextNewVisitor>{ 'O que gostaria de fazer:' }</TextNewVisitor>
           <FormButtons>
-            <ButtonAccept><TextButton>Aceitar Visita</TextButton></ButtonAccept>
-            <ButtonReject><TextButton>Recusar Visita</TextButton></ButtonReject>
+            <ButtonAccept onPress={ () => { responseNotification(uid, visitor, 'Sim'); navigation.goBack() } }><TextButton>Aceitar Visita</TextButton></ButtonAccept>
+            <ButtonReject onPress={ () => { responseNotification(uid, visitor, 'Nao'); navigation.goBack() } }><TextButton>Recusar Visita</TextButton></ButtonReject>
           </FormButtons>
         </>
           :

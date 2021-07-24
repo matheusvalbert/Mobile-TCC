@@ -35,6 +35,7 @@ const Notificacoes = ({ navigation }) => {
 
   function readNotification(item) {
     navigation.navigate('Detalhes notificacao', {
+      uid: item.uid,
       notification: item.notification,
       visitor: item.visitor
     });

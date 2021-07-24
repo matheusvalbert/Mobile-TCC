@@ -51,8 +51,28 @@ export const Notificacoes = ({ children }) => {
     }
   }
 
+  async function responseNotification(uid, name, authorized) {
+
+    try {
+      const response = await not.responseNotification(uid, name, authorized);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function discardNotification(uid) {
+
+    try {
+      const response = await not.discardNotification(uid);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <notificacaoContext.Provider value={{ navigationRef, getNotification, notificacao }}>
+    <notificacaoContext.Provider value={{ navigationRef, getNotification, notificacao, responseNotification, discardNotification }}>
       {children}
     </notificacaoContext.Provider>
   );
