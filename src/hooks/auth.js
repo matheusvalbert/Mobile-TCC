@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import messaging from '@react-native-firebase/messaging';
 
 import api from '../services/api';
 import * as auth from '../services/auth';
@@ -67,6 +69,7 @@ export const Auth = ({ children }) => {
       setUid('');
       setToken('');
       setSigned(false);
+      await auth.deleteToken();
     } catch(err) {
       console.log(err);
     }
@@ -88,6 +91,11 @@ export const Auth = ({ children }) => {
     catch (err) {
       alert('falha no login');
     }
+
+    messaging()
+      .getToken()
+      .then(async token => { await auth.setToken(token) });
+
   };
 
   return(

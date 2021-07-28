@@ -25,7 +25,6 @@ import DetalhesNotificacao from '../pages/detalhesNotificacao';
 import AlterarSenha from '../pages/alterarSenha';
 
 import { useStackName } from '../hooks/stackName';
-import { useNotificacoes } from '../hooks/notificacoes';
 import { Morador } from '../hooks/morador';
 import { Visitante } from '../hooks/visitante';
 import { Agendar } from '../hooks/agendar';
@@ -34,19 +33,16 @@ import { Reservar } from '../hooks/reservar';
 
 import messaging from '@react-native-firebase/messaging';
 
-messaging().setBackgroundMessageHandler(async remoteMessage => {
-  console.log('Message handled in the background!', remoteMessage);
-});
+messaging().setBackgroundMessageHandler(async remoteMessage => { });
 
 const Stack = createStackNavigator();
 
 const StackRoutes = () => {
 
   const { name } = useStackName();
-  const { navigationRef } = useNotificacoes();
 
   return(
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer>
       <Morador>
         <Visitante>
           <Agendar>

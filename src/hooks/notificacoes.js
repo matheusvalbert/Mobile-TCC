@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, createRef } from 'react';
 
-import { StackActions } from '@react-navigation/native';
-import PushNotification from 'react-native-push-notification';
 import messaging from '@react-native-firebase/messaging';
+import PushNotification from 'react-native-push-notification';
 
 import * as not from '../services/notificacao';
 
@@ -12,29 +11,14 @@ export const Notificacoes = ({ children }) => {
 
   const [ notificacao, setNotificacao ] = useState([]);
 
-  const navigationRef = createRef();
-
-  PushNotification.configure({
-    onNotification: notification => {
-      console.log(notification);
-      if(notification.userInteraction) {
-        navigationRef.current.dispatch(StackActions.push('Lista de Visitantes', {}));
-      }
-    }
-  });
-
   useEffect(() => {
     messaging()
       .onMessage(async remoteMessage => {
-        console.log(
-          'Notification caused app to open from foreground state:',
-          remoteMessage,
-        );
         PushNotification.localNotificationSchedule({
-          title:"Message",
-          message: "My Notification Message",
+          title: remoteMessage.notification.title,
+          message: remoteMessage.notification.body,
           date: new Date(Date.now()),
-          allowWhileIdle: false
+          allowWhileIdle: false,
         });
       });
   }, []);
@@ -72,7 +56,7 @@ export const Notificacoes = ({ children }) => {
   }
 
   return (
-    <notificacaoContext.Provider value={{ navigationRef, getNotification, notificacao, responseNotification, discardNotification }}>
+    <notificacaoContext.Provider value={{ getNotification, notificacao, responseNotification, discardNotification }}>
       {children}
     </notificacaoContext.Provider>
   );
