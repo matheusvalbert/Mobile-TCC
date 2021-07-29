@@ -5,7 +5,7 @@ export const ViewForm = styled.View`
   bottom: 0;
   background-color: #FFF;
   width: 100%;
-  height: 94%;
+  height: ${Platform.select({ ios: '94%', android: '100%' })};
   border-radius: 30px;
 `;
 

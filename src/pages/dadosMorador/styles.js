@@ -41,7 +41,7 @@ export const Image = styled.Image`
 
 export const Add = styled.TouchableOpacity`
   position: absolute;
-  left: 290px;
+  left: ${Platform.select({ ios: '290px', android: '320px' })};
   bottom: 15px;
   background-color: #1520AB;
   width: 70px;
