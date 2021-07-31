@@ -3,13 +3,29 @@ import React, { createContext, useContext, useState, useEffect, createRef } from
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from 'react-native-push-notification';
 
+import { StackActions } from '@react-navigation/native';
+
 import * as not from '../services/notificacao';
 
 const notificacaoContext = createContext();
+const navigationRef = createRef();
 
 export const Notificacoes = ({ children }) => {
 
   const [ notificacao, setNotificacao ] = useState([]);
+
+  PushNotification.configure({
+    onNotification: function (notification) {
+      console.log('aaaa');
+      if(notification.userInteraction && notification.data.uid !== '') {
+        navigationRef.current.dispatch(StackActions.push('Detalhes notificacao', {
+          uid: notification.data.uid,
+          notification: notification.data.notification,
+          visitor: notification.data.visitor
+        }));
+      }
+    },
+  });
 
   useEffect(() => {
     messaging()
@@ -19,7 +35,35 @@ export const Notificacoes = ({ children }) => {
           message: remoteMessage.notification.body,
           date: new Date(Date.now()),
           allowWhileIdle: false,
+          data: {
+            uid: remoteMessage.data.uid,
+            number: remoteMessage.data.number,
+            type: remoteMessage.data.type,
+            notification: remoteMessage.data.notification,
+            visitor: remoteMessage.data.visitor,
+          }
         });
+      });
+    messaging()
+      .onNotificationOpenedApp(remoteMessage => {
+        if(remoteMessage.data.uid !== '') {
+          navigationRef.current.dispatch(StackActions.push('Detalhes notificacao', {
+            uid: remoteMessage.data.uid,
+            notification: remoteMessage.data.notification,
+            visitor: remoteMessage.data.visitor
+          }));
+        }
+      });
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if(remoteMessage !== null && remoteMessage.data.uid !== '') {
+          navigationRef.current.dispatch(StackActions.push('Detalhes notificacao', {
+            uid: remoteMessage.data.uid,
+            notification: remoteMessage.data.notification,
+            visitor: remoteMessage.data.visitor
+          }));
+        }
       });
   }, []);
 
@@ -56,7 +100,7 @@ export const Notificacoes = ({ children }) => {
   }
 
   return (
-    <notificacaoContext.Provider value={{ getNotification, notificacao, responseNotification, discardNotification }}>
+    <notificacaoContext.Provider value={{ navigationRef, getNotification, notificacao, responseNotification, discardNotification }}>
       {children}
     </notificacaoContext.Provider>
   );

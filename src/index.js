@@ -5,6 +5,11 @@ import { Auth } from './hooks/auth';
 
 import Routes from './routes';
 
+import messaging from '@react-native-firebase/messaging';
+
+messaging()
+  .setBackgroundMessageHandler(async remoteMessage => { });
+
 const App = () => {
   return(
     <>
