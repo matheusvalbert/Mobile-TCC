@@ -16,7 +16,6 @@ export const Notificacoes = ({ children }) => {
 
   PushNotification.configure({
     onNotification: function (notification) {
-      console.log('aaaa');
       if(notification.userInteraction && notification.data.uid !== '') {
         navigationRef.current.dispatch(StackActions.push('Detalhes notificacao', {
           uid: notification.data.uid,
