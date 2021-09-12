@@ -26,7 +26,7 @@ const SelecionarListaDeVisitantes = props => {
         <ViewForm>
           <HeaderButtons>
             <Button onPress={ () => props.setModalVisible(false) }>
-                <SelectionText>Calcelar</SelectionText>
+                <SelectionText>Cancelar</SelectionText>
             </Button>
             <Button onPress={ () => okPress() }>
               <SelectionText>Ok</SelectionText>
