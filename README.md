@@ -23,3 +23,9 @@ npx react-native run-android (Android)
 npx pod-install (Apenas iOS)
 npx react-native run-ios (iOS)
 ```
+
+# Outros repositórios do projeto
+
+- Servidor: https://github.com/matheusvalbert/Server-TCC
+- Desktop: https://github.com/matheusvalbert/Desktop-TCC
+- Placas: https://github.com/matheusvalbert/Placas-TCC
