@@ -1,6 +1,6 @@
 # Mobile TCC
 
-Servidor API do projeto de TCC (Sistema de controle de acesso para condomínios).
+Front-end Mobile do projeto de TCC (Sistema de controle de acesso para condomínios).
 
 O projeto é um protótipo de um sistema de controle de acesso para condomínios, no qual se utiliza técnicas de inteligência artificial para detectar e reconhecer faces e placas de moradores e visitantes.
 
