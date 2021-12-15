@@ -24,6 +24,12 @@ npx pod-install (Apenas iOS)
 npx react-native run-ios (iOS)
 ```
 
+# Principais telas do sistema
+
+<p align="center">
+  <img src="https://github.com/matheusvalbert/Mobile-TCC/blob/master/telas.png" />
+</p>
+
 # Outros repositórios do projeto
 
 - Servidor: https://github.com/matheusvalbert/Server-TCC
